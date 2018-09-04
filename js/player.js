@@ -5,14 +5,16 @@ function Player(game) {
     this.y = this.y0;
 
     this.img = new Image();
-    this.img.src = "img/redHood.png"
+    this.img.src = "img/redHoodmod.png"
 
     this.img.frames = 3;
     this.img.frameIndex = 0;
-
+    this.cont = 0;
+    
     this.weight = 120;
     this.height = 175;
 
+    this.vx = 1,
     this.vy = 1;
 
 }
@@ -28,40 +30,47 @@ Player.prototype.draw = function () {
         this.y,
         this.weight,
         this.height,
-        this.vx = 1,
 
     );
-
-    this.animateImg();  
 }
 
 var TOP_KEY = 38;
-var LEFT_KEY = 39;
-var RIGHT_KEY = 37;
+var LEFT_KEY = 37;
+var RIGHT_KEY = 39;
 var DOWN_KEY = 40;
 
 Player.prototype.setListeners = function () {
-    document.onkeydown = function (event)  {
+    document.onkeydown = function (event) {
         switch (event.keyCode) {
-            case LEFT_KEY: 
-                this.x += 5;
-                this.vx += 10;
-                break;
-            case RIGHT_KEY:
+            case LEFT_KEY:
+                if (this.x <= 0) {
+                    break;
+                }
                 this.x -= 5;
                 this.vx -= 10;
+                this.animateImg();
                 break;
-           
-            }
+            case RIGHT_KEY:
+                if (this.x + this.weight >= this.game.canvas.width) {
+                    break;
+                }
+                this.x += 5;
+                this.vx += 10;
+                this.animateImg();
+                break;
+
+        }
     }.bind(this)
 }
 
-Player.prototype.animateImg = function() {
-    if (this.game.framesCounter % 20 === 0) {
+Player.prototype.animateImg = function () {
+    this.cont ++;
+    if (this.cont % 5 === 0) {
         this.img.frameIndex += 1;
         if (this.img.frameIndex > 2) this.img.frameIndex = 0;
-    }   
-    
+    }
+
 }
+
 
 

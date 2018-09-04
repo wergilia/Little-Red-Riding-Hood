@@ -4,7 +4,7 @@ function Game(canvas) {
     this.canvas.width = window.innerWidth - 20;
     this.canvas.height = window.innerHeight - 20;
 
-    this.reset();
+    this.newGame();
     
 }
 
@@ -12,6 +12,7 @@ Game.prototype.start = function() {
     this.interval = setInterval(function() {
         this.clear();
         this.draw();
+        this.move();
 
         this.player.setListeners();
 
@@ -33,12 +34,17 @@ Game.prototype.clear = function() {
 Game.prototype.draw = function() {
     this.background.draw();
     this.player.draw();
+    this.goodies.draw();
 
 }
+Game.prototype.move = function() {
+    this.goodies.move();
+}
 
-Game.prototype.reset = function() {
+Game.prototype.newGame = function() {
     this.background = new Background(this);
     this.player = new Player(this);
+    this.goodies = new Goodies(this);
     this.framesCounter = 0;
     
 }
