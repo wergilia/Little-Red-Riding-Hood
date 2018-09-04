@@ -48,6 +48,7 @@ Player.prototype.setListeners = function () {
                 }
                 this.x -= 5;
                 this.vx -= 10;
+                this.img.src = "img/redHoodmodmirror.png";
                 this.animateImg();
                 break;
             case RIGHT_KEY:
@@ -56,6 +57,7 @@ Player.prototype.setListeners = function () {
                 }
                 this.x += 5;
                 this.vx += 10;
+                this.img.src = "img/redHoodmod.png"
                 this.animateImg();
                 break;
 

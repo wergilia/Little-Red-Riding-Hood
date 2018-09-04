@@ -25,9 +25,8 @@ Goodies.prototype.draw = function () {
 }
 
 Goodies.prototype.move = function () {
-    if (this.y <= this.game.player.height + this.game.player.y) {
+    if (this.y + this.height <= this.game.player.height + this.game.player.y) {
         this.y += this.vy;
     }
-   
 }
 
