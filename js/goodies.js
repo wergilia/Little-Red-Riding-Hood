@@ -1,8 +1,10 @@
 var Goodies = function (game) {
     this.game = game;
-    this.y = this.game.canvas.height * 0.01;
-    this.x = this.game.canvas.width * 0.01;
 
+    this.y = this.game.canvas.height * 0.01;
+    this.x = this.game.canvas.width * Math.random(0.9);
+    // this.img = new Image();
+    // this.img.src = "img/pear.jpg";
     this.img = new Image();
     this.img.src = "img/bread.png";
 
