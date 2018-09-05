@@ -1,15 +1,12 @@
-var Goodies = function (game) {
+var Goodies = function (game,img) {
     this.game = game;
 
     this.y = this.game.canvas.height * 0.01;
     this.x = this.game.canvas.width * Math.random(0.9);
-    // this.img = new Image();
-    // this.img.src = "img/pear.jpg";
-    this.img = new Image();
-    this.img.src = "img/bread.png";
+    this.img = img;
 
-    this.weight = 50;
-    this.height = 50;
+    this.weight = this.game.canvas.width * 0.05;
+    this.height = this.game.canvas.height * 0.05;
 
     this.vy = 2;
     
@@ -17,13 +14,12 @@ var Goodies = function (game) {
 
 
 Goodies.prototype.draw = function () {
-    this.game.ctx.drawImage(
+    this.game.ctx.drawImage(    
         this.img,
         this.x,
         this.y,
         this.weight,
-        this.height,
-    );
+        this.height);
 }
 
 Goodies.prototype.move = function () {
