@@ -1,4 +1,4 @@
-function Images(game) {
+var Images = function(game) {
 
     this.bread = new Image();
     this.bread.src = "img/bread.png";
@@ -13,14 +13,14 @@ function Images(game) {
     this.pierogi.src = "img/pierogi.png";
 
     this.cake = new Image();
-    this.cake.src = "img/chococake.jpg";
+    this.cake.src = "img/cake.png";
 
     this.soup = new Image();
     this.soup.src = "img/soup.png";
 
-    this.walnuts = new Image();
-    this.walnuts.src = "img/walnuts.jpg";
+    this.walnut = new Image();
+    this.walnut.src = "img/walnut.png";
 
     this.pear = new Image();
-    this.pear.src = "img/pear.jpg";
+    this.pear.src = "img/pear.png";
 }
