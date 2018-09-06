@@ -11,15 +11,19 @@ function Game(canvas) {
 }
 
 Game.prototype.start = function() {
+    this.time = new Date();
     this.interval = setInterval(function() {
         this.clear();
+        
         this.draw();
         this.move();
         this.player.setListeners();
         this.collectGoodies();
         this.printGoodies();
+        this.drawScore();
+        this.gameOver();
         this.sound.play();
-        }.bind(this), 1000 / 60) //this z setInterval jest poza scope game wiec trzeba jemu to przypomiec stosujac .bind
+    }.bind(this), 1000 / 60) //this z setInterval jest poza scope game wiec trzeba jemu to przypomiec stosujac .bind
 }
 
 Game.prototype.printGoodies = function() {
@@ -63,8 +67,6 @@ Game.prototype.draw = function() {
     this.goodies.forEach(function(goodie) {
         goodie.draw();
     });
-   
-    this.drawScore();
 }
 
 Game.prototype.move = function() {
@@ -87,8 +89,8 @@ Game.prototype.createGoodies = function(img) {
 
 Game.prototype.collectGoodies = function() {
     this.goodies = this.goodies.filter(function(goodie) {
-        var isCollision = ((this.player.x + this.player.weight) >= goodie.x &&
-            (goodie.x + goodie.weight) > this.player.x &&
+        var isCollision = ((this.player.x + this.player.width) >= goodie.x &&
+            (goodie.x + goodie.width) > this.player.x &&
             (this.player.y + this.player.height) > goodie.y &&
             (goodie.y + goodie.height) > this.player.y)
             if (isCollision === true) {
@@ -111,10 +113,19 @@ Game.prototype.stop = function() {
 }
 
 Game.prototype.gameOver = function() {
-    if (this.score < 100){
-        this.setTimeout = this.setTimeout(function(){
+        var now = new Date();
+        //console.log(now.getTime() - this.time.getTime())
+        if (now.getTime() - this.time.getTime() > 15000 && this.score < 100){
             this.stop();
-        }.bind(this), 500)
-    }
+            //console.log( $(".container").css("display"))
+            $(".container").css("display","flex")
+
+            $(".container")[0].innerHTML = "YOU'VE LOST! n/ SCORE: " + this.score;
+        } else if(this.score == 250) {
+            this.stop();
+            $(".container").css("display","flex")
+            $(".container")[0].innerHTML = "YOU WIN";
+        }
 }
-console.log("Booooooooooooooooo")
+
+

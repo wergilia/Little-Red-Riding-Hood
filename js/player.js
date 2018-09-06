@@ -11,7 +11,7 @@ function Player(game) {
     this.img.frameIndex = 0;
     this.cont = 0;
     
-    this.weight = 120;
+    this.width = 120;
     this.height = 175;
 
     this.vx = 1,
@@ -27,7 +27,7 @@ Player.prototype.draw = function() {
         this.img.height,
         this.x,
         this.y,
-        this.weight,
+        this.width,
         this.height,
     );
 }
@@ -50,7 +50,7 @@ Player.prototype.setListeners = function() {
                 this.animateImg();
                 break;
             case RIGHT_KEY:
-                if (this.x + this.weight >= this.game.canvas.width) {
+                if (this.x + this.width >= this.game.canvas.width) {
                     break;
                 }
                 this.x += 5;

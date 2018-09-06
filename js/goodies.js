@@ -3,7 +3,7 @@ var Goodies = function(game,img) {
     this.img = img;
     this.y = this.game.canvas.height * 0.01;
     this.x = this.game.canvas.width * Math.random(0.9);     
-    this.weight = this.game.canvas.width * 0.05;
+    this.width = this.game.canvas.width * 0.05;
     this.height = this.game.canvas.height * 0.08;
     this.vy = 2;
     this.delete = false;
@@ -15,7 +15,7 @@ Goodies.prototype.draw = function() {
         this.img,
         this.x,
         this.y,
-        this.weight,
+        this.width,
         this.height);   
 }
 
