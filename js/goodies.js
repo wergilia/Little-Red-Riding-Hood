@@ -6,8 +6,9 @@ var Goodies = function (game,img) {
     this.img = img;
 
     this.weight = this.game.canvas.width * 0.05;
-    this.height = this.game.canvas.height * 0.05;
-
+    this.height = this.game.canvas.height * 0.08;
+    this.delete = false;
+    this.setTimeout = false; 
     this.vy = 2;
     
 }
@@ -25,6 +26,10 @@ Goodies.prototype.draw = function () {
 Goodies.prototype.move = function () {
     if (this.y + this.height <= this.game.player.height + this.game.player.y) {
         this.y += this.vy;
+    }else if(this.setTimeout == false) {
+        this.setTimeout = setTimeout(function() {
+            this.delete = true;
+        }.bind(this),1000);
     }
 }
 

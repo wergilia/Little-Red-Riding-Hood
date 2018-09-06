@@ -21,7 +21,7 @@ Game.prototype.start = function () {
 }
 
 Game.prototype.printGoodies = function () {
-    if (this.framesCounter % 180 === 0) {
+    if (this.framesCounter % 260 === 0) {
         this.createGoodies(this.img.juice);
     }
     if (this.framesCounter % 160 === 0) {
@@ -39,7 +39,7 @@ Game.prototype.printGoodies = function () {
     if (this.framesCounter % 180 === 0) {
         this.createGoodies(this.img.pear);
     }
-    if (this.framesCounter % 190 === 0) {
+    if (this.framesCounter % 220 === 0) {
         this.createGoodies(this.img.bread);
     }
     if (this.framesCounter % 180 === 0) {
@@ -54,13 +54,14 @@ Game.prototype.clear = function () {
 Game.prototype.draw = function () {
     this.background.draw();
     this.player.draw();
-    this.goodies.forEach(function (goodie) {
-        goodie.draw();
-    });
     this.framesCounter++;
     if (this.framesCounter > 1000) {
         this.framesCounter = 0;
     }
+    this.goodies.forEach(function (goodie) {
+        goodie.draw();
+    });
+   
     this.drawScore();
 }
 
@@ -73,6 +74,8 @@ Game.prototype.move = function () {
 Game.prototype.newGame = function () {
     this.background = new Background(this);
     this.player = new Player(this);
+    //this.audio = new Audio(this);
+    //this.audio.play();
     this.goodies = [];
     this.framesCounter = 0;
     this.score = 0;
@@ -91,7 +94,8 @@ Game.prototype.collectGoodies = function () {
             if (isCollision === true) {
                 this.score += 10;
             }
-            return !isCollision;
+            return !isCollision && !goodie.delete;
+            
     }.bind(this));
 }
 
