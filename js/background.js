@@ -14,6 +14,6 @@ function Background(game) {
       this.x, 
       this.y, 
       this.game.canvas.width, 
-      this.game.canvas.height);
-
-  };
+      this.game.canvas.height
+    );
+  }

@@ -16,10 +16,9 @@ function Player(game) {
 
     this.vx = 1,
     this.vy = 1;
-
 }
 
-Player.prototype.draw = function () {
+Player.prototype.draw = function() {
     this.game.ctx.drawImage(
         this.img,
         this.img.frameIndex * Math.floor(this.img.width / this.img.frames),
@@ -30,7 +29,6 @@ Player.prototype.draw = function () {
         this.y,
         this.weight,
         this.height,
-
     );
 }
 
@@ -39,8 +37,8 @@ var LEFT_KEY = 37;
 var RIGHT_KEY = 39;
 var DOWN_KEY = 40;
 
-Player.prototype.setListeners = function () {
-    document.onkeydown = function (event) {
+Player.prototype.setListeners = function() {
+    document.onkeydown = function(event) {
         switch (event.keyCode) {
             case LEFT_KEY:
                 if (this.x <= 0) {
@@ -60,18 +58,16 @@ Player.prototype.setListeners = function () {
                 this.img.src = "img/redHoodmod.png"
                 this.animateImg();
                 break;
-
         }
     }.bind(this)
 }
 
-Player.prototype.animateImg = function () {
+Player.prototype.animateImg = function() {
     this.cont ++;
     if (this.cont % 5 === 0) {
         this.img.frameIndex += 1;
         if (this.img.frameIndex > 2) this.img.frameIndex = 0;
     }
-
 }
 
 
