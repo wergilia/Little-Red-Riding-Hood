@@ -4,6 +4,9 @@ function Game(canvas) {
     this.canvas.width = window.innerWidth - 20;
     this.canvas.height = window.innerHeight - 20;
     this.img = new Images();
+    this.sound = new Audio("audio/bigBadWolf.mp3");
+    
+
     this.newGame();
 }
 
@@ -15,7 +18,8 @@ Game.prototype.start = function() {
         this.player.setListeners();
         this.collectGoodies();
         this.printGoodies();
-    }.bind(this), 1000 / 60) //this z setInterval jest poza scope game wiec trzeba jemu to przypomiec stosujac .bind
+        this.sound.play();
+        }.bind(this), 1000 / 60) //this z setInterval jest poza scope game wiec trzeba jemu to przypomiec stosujac .bind
 }
 
 Game.prototype.printGoodies = function() {
@@ -72,8 +76,6 @@ Game.prototype.move = function() {
 Game.prototype.newGame = function() {
     this.background = new Background(this);
     this.player = new Player(this);
-    //this.audio = new Audio(this);
-    //this.audio.play();
     this.goodies = [];
     this.framesCounter = 0;
     this.score = 0;
@@ -104,4 +106,15 @@ Game.prototype.drawScore = function() {
     this.ctx.fillText(Math.floor(this.score), x, y);
 }
 
+Game.prototype.stop = function() {
+    clearInterval(this.interval);
+}
 
+Game.prototype.gameOver = function() {
+    if (this.score < 100){
+        this.setTimeout = this.setTimeout(function(){
+            this.stop();
+        }.bind(this), 500)
+    }
+}
+console.log("Booooooooooooooooo")

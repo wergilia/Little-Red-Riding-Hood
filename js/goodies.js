@@ -25,7 +25,7 @@ Goodies.prototype.move = function() {
     } else if (this.setTimeout == false) {
         this.setTimeout = setTimeout(function() {
             this.delete = true;
-        }.bind(this),1000);
+        }.bind(this), 1000);
     }
 }
 

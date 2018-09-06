@@ -54,7 +54,7 @@ Player.prototype.setListeners = function() {
                     break;
                 }
                 this.x += 5;
-                this.vx += 10;
+                this.vx += 10;  
                 this.img.src = "img/redHoodmod.png"
                 this.animateImg();
                 break;
