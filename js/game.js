@@ -26,30 +26,6 @@ Game.prototype.start = function() {
 
 Game.prototype.printGoodies = function(img) {
     this.img.createGoodies();
-    // this.createGoodies(this.img.createGoodies());
-    // if (this.framesCounter % 300 === 0) {
-    // }
-    // if (this.framesCounter % 260 === 0) {
-    //     this.createGoodies(this.img.walnut);
-    // }
-    // if (this.framesCounter % 220 === 0) {
-    //     this.createGoodies(this.img.orange);
-    // }
-    // if (this.framesCounter % 180 === 0) {
-    //     this.createGoodies(this.img.pierogi);
-    // }
-    // if (this.framesCounter % 260 === 0) {
-    //     this.createGoodies(this.img.soup);
-    // }
-    // if (this.framesCounter % 220 === 0) {
-    //     this.createGoodies(this.img.pear);
-    // }
-    // if (this.framesCounter % 220 === 0) {
-    //     this.createGoodies(this.img.bread);
-    // }
-    // if (this.framesCounter % 320 === 0) {
-    //     this.createGoodies(this.img.cake);
-    // }
 }
 
 Game.prototype.clear = function() {
@@ -112,12 +88,9 @@ Game.prototype.stop = function() {
 
 Game.prototype.gameOver = function() {
         var now = new Date();
-        //console.log(now.getTime() - this.time.getTime())
         if (now.getTime() - this.time.getTime() > 15000 && this.score < 100){
             this.stop();
-            //console.log( $(".container").css("display"))
             $(".container").css("display","flex")
-
             $(".container")[0].innerHTML = "YOU'VE LOST! <br> SCORE: " + this.score;
         } else if(this.score == 250) {
             this.stop();
