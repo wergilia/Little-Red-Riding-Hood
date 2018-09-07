@@ -3,17 +3,13 @@ function Player(game) {
     this.x = this.game.canvas.width * 0.1;
     this.y0 = this.game.canvas.height * 0.35;
     this.y = this.y0;
-
     this.img = new Image();
     this.img.src = "img/redHoodmod.png"
-
     this.img.frames = 3;
     this.img.frameIndex = 0;
-    this.cont = 0;
-    
+    this.cont = 0;    
     this.width = 120;
     this.height = 175;
-
     this.vx = 1,
     this.vy = 1;
 }

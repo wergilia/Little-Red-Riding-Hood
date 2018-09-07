@@ -4,17 +4,14 @@ function Game(canvas) {
     this.canvas.width = window.innerWidth - 20;
     this.canvas.height = window.innerHeight - 20;
     this.img = new Images();
-    this.sound = new Audio("audio/bigBadWolf.mp3");
-    
-
+    this.sound = new Audio("audio/bigBadWolf.mp3"); 
     this.newGame();
 }
 
 Game.prototype.start = function() {
     this.time = new Date();
     this.interval = setInterval(function() {
-        this.clear();
-        
+        this.clear();        
         this.draw();
         this.move();
         this.player.setListeners();
@@ -23,7 +20,7 @@ Game.prototype.start = function() {
         this.drawScore();
         this.gameOver();
         this.sound.play();
-    }.bind(this), 1000 / 60) //this z setInterval jest poza scope game wiec trzeba jemu to przypomiec stosujac .bind
+    }.bind(this), 1000 / 60) 
 }
 
 Game.prototype.printGoodies = function() {
@@ -120,7 +117,7 @@ Game.prototype.gameOver = function() {
             //console.log( $(".container").css("display"))
             $(".container").css("display","flex")
 
-            $(".container")[0].innerHTML = "YOU'VE LOST! n/ SCORE: " + this.score;
+            $(".container")[0].innerHTML = "YOU'VE LOST! <br< SCORE: " + this.score;
         } else if(this.score == 250) {
             this.stop();
             $(".container").css("display","flex")
