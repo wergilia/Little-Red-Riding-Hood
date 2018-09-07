@@ -3,14 +3,15 @@ function Game(canvas) {
     this.ctx = this.canvas.getContext("2d");
     this.canvas.width = window.innerWidth - 20;
     this.canvas.height = window.innerHeight - 20;
-    this.img = new Images();
-    this.sound = new Audio("audio/bigBadWolf.mp3"); 
     this.newGame();
+    this.img = new Images(this);
+    this.sound = new Audio("audio/bigBadWolf.mp3"); 
 }
 
 Game.prototype.start = function() {
     this.time = new Date();
     this.interval = setInterval(function() {
+        this.framesCounter++;
         this.clear();        
         this.draw();
         this.move();
@@ -23,31 +24,32 @@ Game.prototype.start = function() {
     }.bind(this), 1000 / 60) 
 }
 
-Game.prototype.printGoodies = function() {
-    if (this.framesCounter % 300 === 0) {
-        this.createGoodies(this.img.juice);
-    }
-    if (this.framesCounter % 260 === 0) {
-        this.createGoodies(this.img.walnut);
-    }
-    if (this.framesCounter % 220 === 0) {
-        this.createGoodies(this.img.orange);
-    }
-    if (this.framesCounter % 180 === 0) {
-        this.createGoodies(this.img.pierogi);
-    }
-    if (this.framesCounter % 260 === 0) {
-        this.createGoodies(this.img.soup);
-    }
-    if (this.framesCounter % 220 === 0) {
-        this.createGoodies(this.img.pear);
-    }
-    if (this.framesCounter % 220 === 0) {
-        this.createGoodies(this.img.bread);
-    }
-    if (this.framesCounter % 320 === 0) {
-        this.createGoodies(this.img.cake);
-    }
+Game.prototype.printGoodies = function(img) {
+    this.img.createGoodies();
+    // this.createGoodies(this.img.createGoodies());
+    // if (this.framesCounter % 300 === 0) {
+    // }
+    // if (this.framesCounter % 260 === 0) {
+    //     this.createGoodies(this.img.walnut);
+    // }
+    // if (this.framesCounter % 220 === 0) {
+    //     this.createGoodies(this.img.orange);
+    // }
+    // if (this.framesCounter % 180 === 0) {
+    //     this.createGoodies(this.img.pierogi);
+    // }
+    // if (this.framesCounter % 260 === 0) {
+    //     this.createGoodies(this.img.soup);
+    // }
+    // if (this.framesCounter % 220 === 0) {
+    //     this.createGoodies(this.img.pear);
+    // }
+    // if (this.framesCounter % 220 === 0) {
+    //     this.createGoodies(this.img.bread);
+    // }
+    // if (this.framesCounter % 320 === 0) {
+    //     this.createGoodies(this.img.cake);
+    // }
 }
 
 Game.prototype.clear = function() {
@@ -57,7 +59,6 @@ Game.prototype.clear = function() {
 Game.prototype.draw = function() {
     this.background.draw();
     this.player.draw();
-    this.framesCounter++;
     if (this.framesCounter > 1000) {
         this.framesCounter = 0;
     }
@@ -117,7 +118,7 @@ Game.prototype.gameOver = function() {
             //console.log( $(".container").css("display"))
             $(".container").css("display","flex")
 
-            $(".container")[0].innerHTML = "YOU'VE LOST! <br< SCORE: " + this.score;
+            $(".container")[0].innerHTML = "YOU'VE LOST! <br> SCORE: " + this.score;
         } else if(this.score == 250) {
             this.stop();
             $(".container").css("display","flex")
